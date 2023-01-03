@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { GlobalStyles } from './GlobalStyles';
 
 import { Header } from './Header/Header';
@@ -23,7 +23,7 @@ export const App = () => {
         </Route>
         <Route path="*" element={<Home />} />
       </Routes>
-      <Suspense />
+      {/* <Suspense /> */}
       <GlobalStyles />
     </>
   );
