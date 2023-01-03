@@ -19,9 +19,20 @@ export const Movies = () => {
       alert(error.value);
     }
   });
+
+  const onFormSubmit = (e, query) => {
+    e.preventDefault();
+    setSearchQuery(query);
+    console.log(query);
+  };
+
+  const onQuerySearch = query => {
+    console.log(query.target.value);
+  };
+
   return (
-    <form>
-      <input text=""></input>
+    <form onSubmit={onFormSubmit}>
+      <input text="text" onChange={onQuerySearch}></input>
     </form>
   );
 };
