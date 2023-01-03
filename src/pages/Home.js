@@ -1,11 +1,12 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import { getTrendingMovies } from '../fetchApi';
-import { useEffect, useState } from 'react';
+import { TrendingList } from '../components/TrendingList/TrendingList';
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     try {
@@ -16,30 +17,16 @@ export const Home = () => {
       alert(error.message);
     }
   }, []);
-  console.log(movies);
+
   return (
     <>
       <ul>
-        {movies.map(movie => {
-          return (
-            <li key={movie.id}>
-              <StyledLink to={'/movies'}>
-                <p>{movie.title}</p>
-              </StyledLink>
-            </li>
-          );
-        })}
+        <TrendingList
+          movies={movies}
+          title={'Trending today'}
+          state={{ from: location }}
+        />
       </ul>
     </>
   );
 };
-
-const StyledLink = styled(NavLink)`
-  text-decoration: none;
-  color: black;
-  font-size: 18px;
-  font-weight: 500;
-  :hover {
-    color: #fc7d07;
-  }
-`;
