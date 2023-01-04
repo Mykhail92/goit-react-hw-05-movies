@@ -1,7 +1,7 @@
 import { SearchForm } from 'components/SearchForm/SearchForm';
 import { TrendingList } from 'components/TrendingList/TrendingList';
-import { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 
 import { getSearchMovie } from '../fetchApi';
 
@@ -35,6 +35,10 @@ const Movies = () => {
     <>
       <SearchForm onSubmit={onFormSubmit}></SearchForm>
       {movies && <TrendingList movies={movies} state={{ from: location }} />}
+      <Suspense fallback={null}>
+        {' '}
+        <Outlet />
+      </Suspense>
     </>
   );
 };

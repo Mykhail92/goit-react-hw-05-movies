@@ -49,7 +49,8 @@ const MovieDetails = () => {
           <StyledBackLink to="cast">Cast</StyledBackLink>
           <StyledBackLink to="reviews">Reviews</StyledBackLink>
         </ul>
-        <Suspense>
+        <Suspense fallback={null}>
+          {' '}
           <Outlet />
         </Suspense>
       </div>
